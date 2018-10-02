@@ -1,6 +1,6 @@
 {
   "name": "isometryjs",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "description": "A tiny JavaScript library for doing isometric maths.",
   "author": "Randall Morey <randall@randallmorey.com>",
   "repository": "randallmorey/isometryjs",
@@ -10,7 +10,9 @@
   "scripts": {
     "precommit": "npm test",
     "commit": "git-cz",
-    "test": "echo \"Warning: no test specified\""
+    "test": "echo \"Warning: no test specified\"",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "iso",
@@ -20,7 +22,9 @@
   ],
   "devDependencies": {
     "commitizen": "^3.0.1",
-    "cz-conventional-changelog": "^2.1.0"
+    "cz-conventional-changelog": "^2.1.0",
+    "semantic-release": "^15.9.16",
+    "travis-deploy-once": "^5.0.9"
   },
   "config": {
     "commitizen": {
