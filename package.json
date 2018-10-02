@@ -1,0 +1,19 @@
+{
+  "name": "isometryjs",
+  "version": "0.0.0",
+  "description": "A tiny JavaScript library for doing isometric maths.",
+  "author": "Randall Morey <randall@randallmorey.com>",
+  "repository": "randallmorey/isometryjs",
+  "homepage": "https://github.com/randallmorey/isometryjs",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "iso",
+    "isometric",
+    "isometry",
+    "matrix"
+  ]
+}
