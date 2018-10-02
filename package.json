@@ -8,12 +8,23 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "precommit": "npm test",
+    "commit": "git-cz",
+    "test": "echo \"Warning: no test specified\""
   },
   "keywords": [
     "iso",
     "isometric",
     "isometry",
     "matrix"
-  ]
+  ],
+  "devDependencies": {
+    "commitizen": "^3.0.1",
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
 }
