@@ -1,6 +1,1 @@
-
-function foo(a, b) {
-  return a + b;
-};
-
-export { foo };
+export { toRadians } from './src/radians';
