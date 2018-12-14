@@ -31,4 +31,40 @@ function dotProduct (tuple1, tuple2) {
     0);
 };
 
-export { toRadians, toDegrees, dotProduct };
+/**
+ * Transposes rows and columns in a matrix (array of arrays of numbers).
+ *
+ * [[1, 2], [3, 4], [5, 6]] => [[1, 3, 5], [2, 4, 6]]
+ *
+ * @param {Array[Array[number]]} matrix
+ * @return {Array[Array[number]]}
+ */
+function transpose (matrix) {
+  return matrix[0].map((value, i) =>
+    matrix.map(tuple => tuple[i])
+  );
+};
+
+/**
+ * Multiplies two matrices and returns the resulting matrix.
+ *
+ * @param {Array[Array[number]]} matrix1
+ * @param {Array[Array[number]]} matrix2
+ * @return {Array[Array[number]]}
+ */
+function matrixMultiply (matrix1, matrix2) {
+  const matrix2Transposed = transpose(matrix2);
+  return matrix1.map(tuple1 =>
+    matrix2Transposed.map(tuple2 =>
+      dotProduct(tuple1, tuple2)
+    )
+  );
+};
+
+export {
+  toRadians,
+  toDegrees,
+  dotProduct,
+  transpose,
+  matrixMultiply
+};
