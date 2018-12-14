@@ -1,4 +1,10 @@
-import { toRadians, toDegrees, dotProduct, transpose } from '../index';
+import {
+  toRadians,
+  toDegrees,
+  dotProduct,
+  transpose,
+  matrixMultiply
+} from '../index';
 import assert from 'assert';
 
 describe('isometryjs', () => {
@@ -60,6 +66,25 @@ describe('isometryjs', () => {
         assert.equal(result[1][1], 5);
         assert.equal(result[2][0], 7);
         assert.equal(result[2][1], 4);
+      });
+    });
+
+    describe('matrixMultiply()', () => {
+      it('works', () => {
+        const matrix1 = [
+          [1, 2, 3],
+          [4, 5, 6]
+        ];
+        const matrix2 = [
+          [7, 8],
+          [9, 10],
+          [11, 12]
+        ];
+        const result = matrixMultiply(matrix1, matrix2);
+        assert.equal(result[0][0], 58);
+        assert.equal(result[0][1], 64);
+        assert.equal(result[1][0], 139);
+        assert.equal(result[1][1], 154);
       });
     });
 

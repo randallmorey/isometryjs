@@ -1,1 +1,7 @@
-export { toRadians, toDegrees, dotProduct, transpose } from './src/utils';
+export {
+  toRadians,
+  toDegrees,
+  dotProduct,
+  transpose,
+  matrixMultiply
+} from './src/utils';
