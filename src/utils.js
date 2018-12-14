@@ -31,4 +31,18 @@ function dotProduct (tuple1, tuple2) {
     0);
 };
 
-export { toRadians, toDegrees, dotProduct };
+/**
+ * Transposes rows and columns in a matrix (array of arrays of numbers).
+ *
+ * [[1, 2], [3, 4], [5, 6]] => [[1, 3, 5], [2, 4, 6]]
+ *
+ * @param {Array[Array{number}]} matrix
+ * @return {Array[Array{number}]}
+ */
+function transpose (matrix) {
+  return matrix[0].map((value, i) => {
+    return matrix.map(tuple => tuple[i]);
+  });
+};
+
+export { toRadians, toDegrees, dotProduct, transpose };
