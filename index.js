@@ -1,1 +1,1 @@
-export { toRadians } from './src/radians';
+export { toRadians, toDegrees } from './src/utils';
