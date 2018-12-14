@@ -1,1 +1,1 @@
-export { toRadians, toDegrees } from './src/utils';
+export { toRadians, toDegrees, dotProduct } from './src/utils';

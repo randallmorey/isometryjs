@@ -1,8 +1,9 @@
-import { toRadians, toDegrees } from '../index';
+import { toRadians, toDegrees, dotProduct } from '../index';
 import assert from 'assert';
 
 describe('isometryjs', () => {
   describe('utils', () => {
+
     describe('toRadians()', () => {
       it('works', () => {
         assert.equal(toRadians(0), 0);
@@ -12,6 +13,7 @@ describe('isometryjs', () => {
         assert.equal(toRadians(360), (Math.PI * 2));
       });
     });
+
     describe('toDegrees()', () => {
       it('works', () => {
         assert.equal(toDegrees(0), 0);
@@ -21,6 +23,16 @@ describe('isometryjs', () => {
         assert.equal(toDegrees(Math.PI * 2), 360);
       });
     });
+
+    describe('dotProduct()', () => {
+      it('works', () => {
+        assert.equal(dotProduct([1, 2, 3], [7, 9, 11]), 58);
+        assert.equal(dotProduct([1, 2, 3], [8, 10, 12]), 64);
+        assert.equal(dotProduct([4, 5, 6], [7, 9, 11]), 139);
+        assert.equal(dotProduct([4, 5, 6], [8, 10, 12]), 154);
+      });
+    });
+
   });
 });
 
