@@ -3,13 +3,40 @@ import {
   toDegrees,
   dotProduct,
   transpose,
-  matrixMultiply
+  matrixMultiply,
+  standardIsometricTransform
 } from '../index';
 import assert from 'assert';
 
 describe('isometryjs', () => {
-  describe('utils', () => {
+  
+  describe('iso', () => {
+    describe('standardIsometricTransform', () => {
+      it('works', () => {
+        const inputOutputPairs = [
+          [[10, 10], [1.7763568394002505e-15, 10]],
+          [[-180, 360], [-467.6537180435969, 90.0000000000001]],
+          [[1900, -2049], [3419.934319544748, -74.50000000000057]]
+        ];
+        inputOutputPairs.forEach(pair => {
+          const result = standardIsometricTransform(pair[0]);
+          const expected = pair[1];
+          result.forEach((value, i) =>
+            assert.equal(
+              // NOTE:  for testing purposes results must be rounded, since
+              // different engines return slightly different results after
+              // ~13 decimal digits.  In practice this variance is acceptable,
+              // so rounding by the transform itself is unnecessary.
+              parseFloat(value.toFixed(10)),
+              parseFloat(expected[i].toFixed(10))
+            )
+          );
+        });
+      });
+    });
+  });
 
+  describe('utils', () => {
     describe('toRadians()', () => {
       it('works', () => {
         assert.equal(toRadians(0), 0);
@@ -87,8 +114,8 @@ describe('isometryjs', () => {
         assert.equal(result[1][1], 154);
       });
     });
-
   });
+
 });
 
 Testem.afterTests((config, data, callback) => {

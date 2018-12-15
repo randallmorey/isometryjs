@@ -5,3 +5,7 @@ export {
   transpose,
   matrixMultiply
 } from './src/utils';
+export {
+  makeIsometricTransform,
+  standardIsometricTransform
+} from './src/iso';
