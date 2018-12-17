@@ -4,7 +4,8 @@ import {
   dotProduct,
   transpose,
   matrixMultiply,
-  standardIsometricTransform
+  standardIsometricTransform,
+  standardInverseIsometricTransform
 } from '../index';
 import assert from 'assert';
 
@@ -20,6 +21,30 @@ describe('isometryjs', () => {
         ];
         inputOutputPairs.forEach(pair => {
           const result = standardIsometricTransform(...pair[0]);
+          const expected = pair[1];
+          result.forEach((value, i) =>
+            assert.equal(
+              // NOTE:  for testing purposes results must be rounded, since
+              // different engines return slightly different results after
+              // ~13 decimal digits.  In practice this variance is acceptable,
+              // so rounding by the transform itself is unnecessary.
+              parseFloat(value.toFixed(10)),
+              parseFloat(expected[i].toFixed(10))
+            )
+          );
+        });
+      });
+    });
+
+    describe('standardInverseIsometricTransform', () => {
+      it('works', () => {
+        const inputOutputPairs = [
+          [[1.7763568394002505e-15, 10], [10, 10]],
+          [[-467.6537180435969, 90.0000000000001], [-180, 360]],
+          [[3419.934319544748, -74.50000000000057], [1900, -2049]]
+        ];
+        inputOutputPairs.forEach(pair => {
+          const result = standardInverseIsometricTransform(...pair[0]);
           const expected = pair[1];
           result.forEach((value, i) =>
             assert.equal(

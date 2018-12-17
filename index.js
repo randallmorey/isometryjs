@@ -7,5 +7,7 @@ export {
 } from './src/utils';
 export {
   makeIsometricTransform,
-  standardIsometricTransform
+  makeInverseIsometricTransform,
+  standardIsometricTransform,
+  standardInverseIsometricTransform
 } from './src/iso';
