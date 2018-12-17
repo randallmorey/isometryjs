@@ -9,7 +9,7 @@ import {
 import assert from 'assert';
 
 describe('isometryjs', () => {
-  
+
   describe('iso', () => {
     describe('standardIsometricTransform', () => {
       it('works', () => {
@@ -19,7 +19,7 @@ describe('isometryjs', () => {
           [[1900, -2049], [3419.934319544748, -74.50000000000057]]
         ];
         inputOutputPairs.forEach(pair => {
-          const result = standardIsometricTransform(pair[0]);
+          const result = standardIsometricTransform(...pair[0]);
           const expected = pair[1];
           result.forEach((value, i) =>
             assert.equal(

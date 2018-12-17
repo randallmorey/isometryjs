@@ -29,10 +29,10 @@ function makeIsometricTransform (degrees) {
     matrices.rotate,
     matrixMultiply(matrices.shear, matrices.scale)
   );
-  return coords => {
+  return (x, y) => {
     const coordinateMatrix = [
-      [coords[0]],
-      [coords[1]],
+      [x],
+      [y],
       [1]
     ];
     const product = matrixMultiply(transformationMatrix, coordinateMatrix);
