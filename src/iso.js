@@ -1,42 +1,43 @@
 import { toRadians, matrixMultiply } from './utils';
 
 /**
+ * Creates a matrix multiplication function that multiplies the passed
+ * transformationMatrix with a coordinate matrix;
+ */
+function makeCoordinateMatrixMultiplicationTransform (transformationMatrix) {
+  return (x, y) => {
+    const coordinateMatrix = [[x], [y], [1]];
+    const product = matrixMultiply(transformationMatrix, coordinateMatrix);
+    return [product[0][0], product[1][0]];
+  };
+};
+
+/**
  * Creates an isometric transformation function using the specified degrees.
  * @param {number} degrees
  * @return {Function} fn expects two arguments, (x,y) coordinates
  */
 function makeIsometricTransform (degrees) {
   const rads = toRadians(degrees);
-  const matrices = {
-    shear: [
-      [1, Math.tan(-rads), 0],
-      [0, 1, 0],
-      [0, 0, 1],
-    ],
-    scale: [
-      [1, 0, 0],
-      [0, Math.cos(-rads), 0],
-      [0, 0, 1]
-    ],
-    rotate: [
-      [Math.cos(rads), -Math.sin(rads), 0],
-      [Math.sin(rads), Math.cos(rads), 0],
-      [0, 0, 1]
-    ]
-  };
+  const rotationMatrix = [
+    [Math.cos(rads), -Math.sin(rads), 0],
+    [Math.sin(rads), Math.cos(rads), 0],
+    [0, 0, 1]
+  ];
+  const shearMatrix = [
+    [1, Math.tan(-rads), 0],
+    [0, 1, 0],
+    [0, 0, 1],
+  ];
+  const scaleMatrix = [
+    [1, 0, 0],
+    [0, Math.cos(-rads), 0],
+    [0, 0, 1]
+  ];
   const transformationMatrix = matrixMultiply(
-    matrices.rotate,
-    matrixMultiply(matrices.shear, matrices.scale)
+    rotationMatrix, matrixMultiply(shearMatrix, scaleMatrix)
   );
-  return (x, y) => {
-    const coordinateMatrix = [
-      [x],
-      [y],
-      [1]
-    ];
-    const product = matrixMultiply(transformationMatrix, coordinateMatrix);
-    return [product[0][0], product[1][0]];
-  };
+  return makeCoordinateMatrixMultiplicationTransform(transformationMatrix);
 };
 
 /**
@@ -49,22 +50,12 @@ function makeInverseIsometricTransform (degrees) {
   const rads = toRadians(degrees);
   // TODO:  this matrix does not support inverse isometric transforms for any
   // degrees other than (standard) 30°.
-  const matrices = {
-    inverse: [
-      [Math.tan(rads), 1, 0],
-      [-Math.tan(rads), 1, 0],
-      [0, 0, 1]
-    ]
-  };
-  return (x, y) => {
-    const coordinateMatrix = [
-      [x],
-      [y],
-      [1]
-    ];
-    const product = matrixMultiply(matrices.inverse, coordinateMatrix);
-    return [product[0][0], product[1][0]];
-  };
+  const transformationMatrix = [
+    [Math.tan(rads), 1, 0],
+    [-Math.tan(rads), 1, 0],
+    [0, 0, 1]
+  ];
+  return makeCoordinateMatrixMultiplicationTransform(transformationMatrix);
 };
 
 /**
