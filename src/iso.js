@@ -3,8 +3,7 @@ import { toRadians, matrixMultiply } from './utils';
 /**
  * Creates an isometric transformation function using the specified degrees.
  * @param {number} degrees
- * @return {Function} fn expects a single argument,
- *                    an array of [x, y] coordinates
+ * @return {Function} fn expects two arguments, (x,y) coordinates
  */
 function makeIsometricTransform (degrees) {
   const rads = toRadians(degrees);
@@ -42,7 +41,8 @@ function makeIsometricTransform (degrees) {
 
 /**
  * Applies a standard 30° isometric transform to the [x, y] coordinate pair.
- * @param {Array[number]} coordinates - an [x, y] coordinate pair
+ * @param {number} x coordinate
+ * @param {number} y coordinate
  * @return {Array[number]} isometric coordinate pair
  */
 const standardIsometricTransform = makeIsometricTransform(30);
