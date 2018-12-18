@@ -2,7 +2,9 @@ import { toRadians, matrixMultiply } from './utils';
 
 /**
  * Creates a matrix multiplication function that multiplies the passed
- * transformationMatrix with a coordinate matrix;
+ * transformationMatrix with a coordinate matrix.
+ * @param {Array[Array[number]]} transformationMatrix
+ * @return {Function} fn expects two arguments, (x,y) coordinates
  */
 function makeCoordinateMatrixMultiplicationTransform (transformationMatrix) {
   return (x, y) => {
