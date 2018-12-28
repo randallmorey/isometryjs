@@ -1,0 +1,16 @@
+---
+plugins:
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  git-legal:
+    enabled: true
+ratings:
+  paths:
+    - "*.js"
+exclude_paths:
+  - coverage/
+  - dist/
+  - node_modules/
+  - test*
