@@ -48,6 +48,9 @@
       "path": "cz-conventional-changelog"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "browserify": {
     "transform": [
       [
